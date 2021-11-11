@@ -282,10 +282,8 @@ class Match:
       self.set.newGame()
 
     return False
- 
-#########   
-## inizio
-#########
-incontro = Match(player1Name = "Andrea", player2Name = "Emanuele", matchType = MatchType.On3SetsLTB, setLength = SetLength.On4Games, advantageType = AdvantageType.NoAdv, tieBreakStart = TieBreakStart.On3All, startToServe = 1)
-incontro.newPoint(1)
-print(incontro.getVisualScore())
+
+if __name__ == "__main__":
+  incontro = Match(player1Name = "Emanuele", player2Name = "Novak", matchType = MatchType.On3SetsLTB, setLength = SetLength.On4Games, advantageType = AdvantageType.NoAdv, tieBreakStart = TieBreakStart.On3All, startToServe = 1)
+  incontro.newPoint(1)
+  print(incontro.getVisualScore())
