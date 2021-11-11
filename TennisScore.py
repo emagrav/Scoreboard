@@ -1,6 +1,7 @@
 from enum import Enum
+from typing import List
 
-class DefaultPlayerNames(Enum):
+class PlayerNames(Enum):
   Player1 = 1
   Player2 = 2
 
@@ -186,8 +187,7 @@ class Match:
   '''
   Il match di tennis
   '''
-  player1Name = ""
-  player2Name = ""
+  playerNames = []
   matchType = None
   setLength = None
   advantageType = None
@@ -197,7 +197,7 @@ class Match:
   set = None # il set corrente
   sets = [] # Lista dei set del match
 
-  def __init__(self, player1Name = DefaultPlayerNames.Player1.name, player2Name = DefaultPlayerNames.Player2.name, matchType = MatchType.On3Sets, setLength = SetLength.On6Games, advantageType = AdvantageType.ClassicAdv, tieBreakStart = TieBreakStart.On6All, startToServe = 1):
+  def __init__(self, player1Name = PlayerNames.Player1.name, player2Name = PlayerNames.Player2.name, matchType = MatchType.On3Sets, setLength = SetLength.On6Games, advantageType = AdvantageType.ClassicAdv, tieBreakStart = TieBreakStart.On6All, startToServe = 1):
     '''
     gli input servono per definire le regole del punteggio
     '''
@@ -209,8 +209,9 @@ class Match:
     if tieBreakStart == TieBreakStart.On3All and setLength == SetLength.On6Games:
       raise Exception("Il tie break non può iniziare sul 3 pari se il numero di game in un set è impostato a 6") 
     
-    self.player1Name = player1Name
-    self.player2Name = player2Name
+    #self.playerNames = f"None;{player1Name};{player2Name}".split(sep=';')
+    self.playerNames = ['None', player1Name, player2Name]
+    
     self.matchType = matchType
     self.setLength = setLength
     self.advantageType = advantageType
@@ -284,6 +285,12 @@ class Match:
     return False
 
 if __name__ == "__main__":
-  incontro = Match(player1Name = "Emanuele", player2Name = "Novak", matchType = MatchType.On3SetsLTB, setLength = SetLength.On4Games, advantageType = AdvantageType.NoAdv, tieBreakStart = TieBreakStart.On3All, startToServe = 1)
+  incontro = Match(player1Name = "Emanuele"
+                  , player2Name = "Novak"
+                  , matchType = MatchType.On3SetsLTB
+                  , setLength = SetLength.On4Games
+                  , advantageType = AdvantageType.NoAdv
+                  , tieBreakStart = TieBreakStart.On3All
+                  , startToServe = PlayerNames.Player1.value)
   incontro.newPoint(1)
   print(incontro.getVisualScore())
