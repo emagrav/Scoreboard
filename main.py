@@ -1,4 +1,19 @@
+from kivy.app import App
+from kivy.lang import Builder
+from kivy.properties import ObjectProperty
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.popup import Popup
+from kivy.uix.screenmanager import Screen, ScreenManager, WipeTransition
 from TennisScore import AdvantageType, Match, MatchType, PlayerNames, SetLength, TieBreakStart
+
+class MainWindow(BoxLayout):
+    pass
+
+kv = Builder.load_file("style.kv")
+
+class MainApp(App):
+    def build(self):
+        return MainWindow()
 
 incontro = Match(
                 player1Name = "Emanuele Gravina"
